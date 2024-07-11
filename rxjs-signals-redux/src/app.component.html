@@ -1,0 +1,39 @@
+<div class='container'>
+    <select (change)="onSelected($event.target)">
+      <option value="">--Select a team member--</option>
+      @for(user of users(); track user.id) {
+        <option [value]='user.id'>{{ user.name }}</option>
+      }
+    </select>
+    <input type='checkbox' (change)='onFilter($event.target)'>Show only incomplete tasks
+
+    <h2>ToDos 
+    @if (currentMember()) {
+      for: {{ currentMember()?.name}}
+    }
+    </h2>
+    @if (isLoading()) {
+      <div>Loading ...</div>
+    } 
+    @if (todosForMember().length > 0) {
+        <div class='grid'>
+            <div class='cellHeader'>Todo</div>
+            <div class='cellHeader'>Completed?</div>
+
+            @for(t of todosForMember(); track t.id) {
+            <div class='cell'>{{ t.title}}</div>
+            <div class='cellCheck'>
+                <input type='checkbox' [checked]='t.completed' 
+                        (change)='onChangeStatus(t, $event.target)'>
+            </div>
+            } @empty {
+                @if(!isLoading()) {
+                    <div>No todos found</div>
+                }
+            }
+        </div>
+    }
+    @if (errorMessage()) {
+        <div>Error: {{ errorMessage() }}</div>
+    }
+</div>

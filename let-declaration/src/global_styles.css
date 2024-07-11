@@ -1,0 +1,51 @@
+/* Add application styles & imports to this file! */
+h2 {
+  color: firebrick;
+}
+
+.container {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  padding: 10px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  width: 100%;
+  margin: 0 0 auto;
+}
+
+.cellHeader {
+  padding: 5px;
+  text-align: left;
+  color: firebrick;
+}
+
+.row {
+  display: contents;
+  cursor: pointer;
+}
+.row > div {
+  padding: 3px;
+  text-align: left;
+}
+
+.goodStock {
+  color: green;
+}
+.lowStock {
+  color: darkgoldenrod;
+}
+.outOfStock {
+  color: gray;
+}
+
+.detail {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  width: 60%;
+  margin: 10px;
+  border: 2px solid firebrick;
+  border-radius: 4px;
+  padding: .5rem;
+}

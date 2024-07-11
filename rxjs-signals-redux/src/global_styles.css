@@ -1,0 +1,28 @@
+/* Add application styles & imports to this file! */
+.container {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding: 10px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: 100%;
+    margin: 0 0 auto;
+}
+
+.cellHeader {
+    padding: 5px;
+    text-align: left;
+    font-weight: bold;
+}
+
+.cell {
+    padding: 3px;
+    text-align: left;
+}
+
+.cellCheck {
+    padding: 3px 3px 3px 40px;
+    text-align: left;
+}

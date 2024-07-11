@@ -1,0 +1,45 @@
+<div class="container">
+  <h1>{{pageTitle}}</h1>
+
+  <div class='grid'>
+    <div class='cellHeader'>Name</div>
+    <div class='cellHeader'>Price</div>
+
+    @for (snackItem of snacks(); track snackItem.id;) {
+      @let qty = snackItem.numberInStock;
+      @let price = snackItem.price | currency;
+  
+      <div class="row" (click)="showDetail(snackItem.id)">
+        <div>{{ snackItem.name }}</div>
+        @if (qty===0) {
+          <div class="outOfStock">Out of stock</div>
+        } @else if (qty < 10) {
+          <div class="lowStock">{{ price }} - low stock</div>
+        } @else {
+          <div class="goodStock">{{ price }}</div>
+        }
+      </div>
+    } @empty { 
+      <div>No snacks available that match the filter</div>
+    }
+  </div>
+
+  @let snack = selectedSnack();
+  @if (snack) {
+    @let qty = snack.numberInStock;
+    <!-- @let qtyStyle = qty<10 ? (qty === 0 ? 'outOfStock' : 'lowStock') : 'goodStock'; -->
+    @let qtyStyle = { outOfStock: qty===0, lowStock: qty<10, goodStock: qty>=10 };
+    <!-- @let allPrice = qty * snack.price  | currency; -->
+    @let allPrice = calculateAllPrice(snack) | currency;
+
+    <div class='detail'>
+      <div>Name:</div><div>{{snack.name}}</div>
+      <div>Price:</div><div>{{snack.price | currency}}</div>
+      <div>Size:</div><div>{{snack.size}}</div>
+      <div>Qty in Stock:</div>
+      <div [ngClass]=qtyStyle>{{snack.numberInStock}}</div>
+      <div>Cost for all:</div><div>{{allPrice}}</div>
+    </div>
+    <div><button (click)="changePrice()">Change Price</button></div>
+  }
+</div>

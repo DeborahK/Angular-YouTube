@@ -1,0 +1,40 @@
+/* Add application styles & imports to this file! */
+h2 {
+  color: firebrick;
+}
+
+.container {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  padding: 10px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  width: 100%;
+  margin: 0 0 auto;
+}
+
+.cellHeader {
+  padding: 5px;
+  text-align: left;
+  color: firebrick;
+}
+
+.row {
+  display: contents;
+}
+.row > div {
+  padding: 3px;
+  text-align: left;
+}
+.row.bold > div {
+  font-weight: bold;
+}
+.row.stripe > div {
+  background-color: blanchedalmond;
+}
+.row.short > div {
+  height: 10px;
+}
+

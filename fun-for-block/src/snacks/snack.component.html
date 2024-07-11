@@ -1,0 +1,81 @@
+<div class="container">
+  <h1>{{pageTitle}}</h1>
+  <app-filter [(filterCriteria)]='listFilter' />
+
+  <h2>Basic Example</h2>
+  <div class="grid">
+    <div class='cellHeader'>Name</div>
+    <div class='cellHeader'>Price</div>
+
+    @for (snackItem of filteredSnacks(); track snackItem.id;) {
+    <div class="row">
+      <div>{{ snackItem.name }}</div>
+      <div>{{ snackItem.price | number : '1.2-2' }}</div>
+    </div>
+    } @empty { No snacks available that match the filter }
+  </div>
+
+  <h2>Track Example</h2>
+  <div class="grid">
+    <div class='cellHeader'>Name</div>
+    <div class='cellHeader'>Price</div>
+
+    @for (snackItem of filteredSnacks(); track trackSnack;) {
+    <div class="row">
+      <div>{{ snackItem.name }}</div>
+      <div>{{ snackItem.price | number : '1.2-2' }}</div>
+    </div>
+    } @empty { No snacks available that match the filter }
+  </div>
+
+  <h2>$index Example</h2>
+  <div class="grid">
+    <div class='cellHeader'>Name</div>
+    <div class='cellHeader'>Price</div>
+    @for (snackItem of filteredSnacks(); track snackItem.id; let idx = $index) {
+    <div class="row">
+      <div>{{idx+1}}. {{ snackItem.name }}</div>
+      <div>{{ snackItem.price | number : '1.2-2' }}</div>
+    </div>
+    } @empty { No snacks available that match the filter }
+  </div>
+  
+  <h2>$first,$last Example</h2>
+  <div class='grid'>
+    <div class='cellHeader'>Name</div>
+    <div class='cellHeader'>Price</div>
+    @for (snackItem of filteredSnacks(); track snackItem.id;
+              let first = $first, last = $last) {
+      <div class="row" [ngClass]="{bold: first || last}">
+        <div>{{ snackItem.name }}</div>
+        <div>{{ snackItem.price | number : '1.2-2' }}</div>
+      </div>
+      } @empty { No snacks available that match the filter }
+  </div>
+
+  <h2>$odd,$even Example</h2>
+  <div class='grid'>
+    <div class='cellHeader'>Name</div>
+    <div class='cellHeader'>Price</div>
+    @for (snackItem of filteredSnacks(); track snackItem.id;
+              let odd = $odd, even = $even) {
+      <div class="row" [ngClass]="{stripe: even}">
+        <div>{{ snackItem.name }}</div>
+        <div>{{ snackItem.price | number : '1.2-2' }}</div>
+      </div>
+    } @empty { No snacks available that match the filter }
+  </div>
+
+  <h2>$count Example</h2>
+  <div class='grid'>
+    <div class='cellHeader'>Name</div>
+    <div class='cellHeader'>Price</div>
+    @for (snackItem of filteredSnacks(); track snackItem.id;
+              let count = $count) {
+    <div class="row" [ngClass]="{short: count>4}">
+      <div>{{ snackItem.name }}</div>
+      <div>{{ snackItem.price | number : '1.2-2' }}</div>
+    </div>
+    } @empty { No snacks available that match the filter }
+  </div>
+</div>
