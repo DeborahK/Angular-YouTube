@@ -1,0 +1,12 @@
+.navbar-brand {
+  font-size: larger;
+}
+
+.nav-link {
+  font-size: larger;
+  cursor: pointer;
+}
+
+.navbar-light .navbar-nav .nav-link.active {
+  color: #007ACC
+}
